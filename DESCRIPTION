@@ -1,0 +1,20 @@
+Package: cnum
+Type: Package
+Title: Chinese Numerals in R
+Version: 0.1.0
+Author: Elgar Teo
+Maintainer: Elgar Teo <elgarteo@connect.hku.hk>
+URL: https://github.com/elgarteo/cnum/
+BugReports: https://github.com/elgarteo/cnum/issues
+Description: This R package provides useful functions to work with Chinese numerals in R,
+    such as conversion between Chinese numerals and Arabic numerals as well as detection and
+    extraction of Chinese numerals in character objects and string.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: R(>= 2.10)
+Imports:
+    stringr
+Suggests:
+    magrittr
+LazyData: true
+RoxygenNote: 7.0.2

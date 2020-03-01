@@ -1,0 +1,74 @@
+# Chinese Numerals in **R** 中文數字處理
+This R package provides useful functions to work with Chinese numerals in R,
+such as conversion between Chinese numerals and Arabic numerals as well as
+detection and extraction of Chinese numerals in character objects and string.
+
+_cnum_ supports:
+* Conversion of any numbers of absolute value up to 10<sup>18</sup>
+* Conversion of decimal numbers
+* Traditional and Simplified Chinese
+* Financial numeral characters
+* Four scale naming systems including the casual and SI standard used in and outside mainland China
+
+_cnum_ 是協助在R中處理中文數字的R套件，包含了轉換、識別及抽取中文數字之函數。
+
+本套件支援：
+* 任何數值不大於10<sup>18</sup>（一百京）之正負數轉換
+* 小數點轉換
+* 繁體及简体中文
+* 大小寫數字
+* 四種分別於中國大陸內外通用之日常及國際單位制進位命名法
+
+## Installing
+```
+#install.packages("devtools")
+devtools::install_github("elgarteo/cnum")
+```
+
+## Using
+To convert from Arabic numerals to Chinese numerals:
+```
+num2c(721)
+num2c(-6)
+num2c(3.14)
+num2c(721, literal = TRUE) # return "七二一" instead of "七百二十一"
+num2c(1.45e12, financial = TRUE) # 大寫數字
+num2c(6.85e12, lang = "sc", mode = "casualPRC")
+num2c(1.5e9, mode = "SIprefixPRC", single = TRUE) # "一點五吉" instead of "一吉五百兆"
+```
+
+To convert from Chinese numerals to Arabic numerals:
+```
+c2num("七百二十一")
+c2num("負六")
+c2num("三點一四")
+c2num("七二一", literal = TRUE)
+c2num("壹兆肆仟伍佰億", financial = TRUE)
+c2num("六万亿八千五百亿", lang = "sc", mode = "casualPRC")
+c2num("一點五吉", mode = "SIprefix")
+```
+
+To detect Chinese numerals in character objects or string:
+```
+is_cnum("七百二十一")
+is_cnum(c("非數字", "七百二十一"))
+is_cnum("七千三") # passes the casual test
+is_cnum("七千三", strict = TRUE) # fails the strict test
+is_cnum("壹兆肆仟伍佰億", financial = TRUE)
+is_cnum("六万亿八千五百亿", lang = "sc", mode = "casualPRC")
+
+has_cnum("加價一百八十元")
+has_cnum(c("非數字", "加價一百八十元"))
+```
+
+To extract Chinese numerals from string:
+```
+extract_cnum("分別加價一百八十元和五十六元")
+extract_cnum("十四亿人", lang = "sc")
+extract_cnum("六万亿元", lang = "sc", mode = "casualPRC")
+extract_cnum(c("加價一百八十元", "加價五十六元"))
+```
+
+## To-Do
+* Add support for fractions and percentage
+* Add support for SI naming in decimal places (e.g. 1<sup>-6</sup> as 一微)
