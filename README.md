@@ -1,4 +1,8 @@
 # Chinese Numerals in **R** 中文數字處理
+
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/cnum)](https://cran.r-project.org/package=cnum)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 This R package provides useful functions to work with Chinese numerals in R,
 such as conversion between Chinese numerals and Arabic numerals as well as
 detection and extraction of Chinese numerals in character objects and string.
