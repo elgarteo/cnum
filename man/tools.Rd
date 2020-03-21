@@ -49,10 +49,14 @@ test)}
 Disregarded when \code{strict = TRUE}.}
 }
 \value{
-\code{is_cnum} and \code{has_cnum} return a logical vector
-  (is/contains Chinese numerals or not for each element of \code{x}).
+\code{is_cnum} returns a logical vector indicating is Chinese
+  numerals or not for each element of \code{x}).
 
-  \code{extract_cnum} returns a character vector.
+\code{has_cnum} returns a logical vector indicating contains Chinese
+  numerals or not for each element of \code{x}).
+
+\code{extract_cnum} returns a list of character vectors containing
+  the extracted Chinese numerals.
 }
 \description{
 Functions to detect and extract Chinese numerals in character object and

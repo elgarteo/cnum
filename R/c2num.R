@@ -1,7 +1,9 @@
 #' @describeIn conversion Convert Chinese Numerals to Arabic Numerals.
 #'
+#' @return \code{c2num} returns a numeric vector.
+#'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' c2num("hello")
 #' }
 #'

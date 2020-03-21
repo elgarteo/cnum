@@ -18,11 +18,6 @@
 #'
 #' @inheritParams conversion
 #'
-#' @return \code{is_cnum} and \code{has_cnum} return a logical vector
-#'   (is/contains Chinese numerals or not for each element of \code{x}).
-#'
-#'   \code{extract_cnum} returns a character vector.
-#'
 #' @inheritSection conversion Details
 #'
 #' @seealso \link[=conversion]{Functions for conversion}
@@ -32,6 +27,9 @@
 NULL
 
 #' @describeIn tools Test if character object is Chinese numerals
+#'
+#' @return \code{is_cnum} returns a logical vector indicating is Chinese
+#'   numerals or not for each element of \code{x}).
 #'
 #' @examples
 #' is_cnum("hello")
@@ -43,7 +41,7 @@ is_cnum <- function(x, lang = "tc", mode = "casual", financial = FALSE,
   if (strict) {
     if (length(x) > 1) {
       return(sapply(x, function(y)
-        is_cnum(y, lang, mode, financial, literal, strict)))
+        is_cnum(y, lang, mode, financial, literal, strict, ...)))
     }
     tryCatch(
       error = function(cnd) {
@@ -59,6 +57,9 @@ is_cnum <- function(x, lang = "tc", mode = "casual", financial = FALSE,
 
 #' @describeIn tools Test if string contains Chinese numerals
 #'
+#' @return \code{has_cnum} returns a logical vector indicating contains Chinese
+#'   numerals or not for each element of \code{x}).
+#'
 #' @examples
 #' has_cnum("hello")
 #'
@@ -66,12 +67,15 @@ is_cnum <- function(x, lang = "tc", mode = "casual", financial = FALSE,
 #'
 has_cnum <- function(x, lang = "tc", mode = "casual", financial = FALSE, ...) {
   if (length(x) > 1) {
-    return(sapply(x, function(y) has_cnum(y, lang, mode, financial)))
+    return(sapply(x, function(y) has_cnum(y, lang, mode, financial, ...)))
   }
   grepl(return_regex(lang, mode, financial, FALSE), x, ...)
 }
 
 #' @describeIn tools Extract Chinese numerals from string
+#'
+#' @return \code{extract_cnum} returns a list of character vectors containing
+#'   the extracted Chinese numerals.
 #'
 #' @examples
 #' extract_cnum("hello")

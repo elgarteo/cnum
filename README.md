@@ -10,17 +10,29 @@ _cnum_ supports:
 * Financial numeral characters
 * Four scale naming systems including the casual and SI standard used in and outside mainland China
 
-_cnum_ 是協助在R中處理中文數字的R套件，包含了轉換、識別及抽取中文數字之函數。
+_cnum_ 是協助處理中文數字的R套件，提供轉換、識別及抽取中文數字的函數。
 
 本套件支援：
 * 任何數值不大於10<sup>18</sup>（一百京）之正負數轉換
 * 小數點轉換
-* 繁體及简体中文
+* 正體及簡體中文
 * 大小寫數字
-* 四種分別於中國大陸內外通用之日常及國際單位制進位命名法
+* 四種分別通用於中國大陸內外的日常及國際單位制進位命名法
+
+_cnum_ 是协助处理中文数字的R包，提供转换、识别及抽取中文数字的函数。
+
+本包支援：
+* 任何数值不大於10<sup>18</sup>（一百京）之正负数转换
+* 小数点转换
+* 繁体及简体中文
+* 大小写数字
+* 四种分别通用於中国内地內外的日常及国际單位制进位命名法
 
 ## Installing
 ```
+install.packages("cnum")
+
+# To install the development version:
 #install.packages("devtools")
 devtools::install_github("elgarteo/cnum")
 ```

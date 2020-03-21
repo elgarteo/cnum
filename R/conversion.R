@@ -22,10 +22,6 @@
 #'   only? (e.g. 1.5e+08 as "\emph{yi dian wuyi}" instead of "\emph{yiyi
 #'   wuqianwan}")
 #'
-#' @return \code{c2num} returns a numeric vector.
-#'
-#'   \code{num2c} returns a character vector.
-#'
 #' @section Details: The following scale naming systems are supported: \itemize{
 #'   \item {\code{"casual"}: }{the casual naming system used outside of mainland
 #'   China, i.e. 1e+09 is referred to as "\emph{yi zhao}".} \item
@@ -48,11 +44,13 @@
 #' @references The standard for mode \code{"SIprefix"} \emph{Names, Definitions
 #'   and Symbols of the Legal Units of Measurement and the Decimal Multiples and
 #'   Submultiples} is available from
-#'   \url{https://law.moea.gov.tw/Download.ashx?FileID=168227}.
+#'   \url{https://gazette.nat.gov.tw/egFront/detail.do?metaid=108965} (in
+#'   Traditonal Chinese).
 #'
 #'   The standard for mode \code{"SIprefixPRC"} \emph{China Statutory
 #'   Measurement Units} is available from
-#'   \url{http://gkml.samr.gov.cn/nsjg/jls/201902/t20190225_291134.html}.
+#'   \url{http://gkml.samr.gov.cn/nsjg/jls/201902/t20190225_291134.html} (in
+#'   Simplified Chinese).
 #'
 #' @seealso \link[=tools]{Functions for detetction and extraction}
 #'

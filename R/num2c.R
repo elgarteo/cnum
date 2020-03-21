@@ -1,5 +1,7 @@
 #' @describeIn conversion Convert Arabic Numerals to Chinese Numerals.
 #'
+#' @return \code{num2c} returns a character vector.
+#'
 #' @examples
 #' num2c(721)
 #' num2c(-6)

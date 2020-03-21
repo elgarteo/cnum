@@ -41,7 +41,7 @@ wuqianwan}")}
 \value{
 \code{c2num} returns a numeric vector.
 
-  \code{num2c} returns a character vector.
+\code{num2c} returns a character vector.
 }
 \description{
 Functions to convert between Chinese and Arabic numerals.
@@ -80,7 +80,7 @@ Functions to convert between Chinese and Arabic numerals.
 }
 
 \examples{
-\dontrun{
+\donttest{
 c2num("hello")
 }
 
@@ -97,11 +97,13 @@ num2c(1.5e9, mode = "SIprefix", single = TRUE)
 The standard for mode \code{"SIprefix"} \emph{Names, Definitions
   and Symbols of the Legal Units of Measurement and the Decimal Multiples and
   Submultiples} is available from
-  \url{https://law.moea.gov.tw/Download.ashx?FileID=168227}.
+  \url{https://gazette.nat.gov.tw/egFront/detail.do?metaid=108965} (in
+  Traditonal Chinese).
 
   The standard for mode \code{"SIprefixPRC"} \emph{China Statutory
   Measurement Units} is available from
-  \url{http://gkml.samr.gov.cn/nsjg/jls/201902/t20190225_291134.html}.
+  \url{http://gkml.samr.gov.cn/nsjg/jls/201902/t20190225_291134.html} (in
+  Simplified Chinese).
 }
 \seealso{
 \link[=tools]{Functions for detetction and extraction}
