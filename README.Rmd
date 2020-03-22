@@ -26,6 +26,7 @@ such as conversion between Chinese numerals and Arabic numerals as well as
 detection and extraction of Chinese numerals in character objects and string.
 
 _cnum_ supports:
+
 * Conversion of any numbers of absolute value up to 10<sup>18</sup>
 * Conversion of decimal numbers
 * Traditional and Simplified Chinese
@@ -35,6 +36,7 @@ _cnum_ supports:
 _cnum_ 是協助處理中文數字的R套件，提供轉換、識別及抽取中文數字的函數。
 
 本套件支援：
+
 * 任何數值不大於10<sup>18</sup>（一百京）之正負數轉換
 * 小數點轉換
 * 正體及簡體中文
@@ -44,6 +46,7 @@ _cnum_ 是協助處理中文數字的R套件，提供轉換、識別及抽取中
 _cnum_ 是协助处理中文数字的R包，提供转换、识别及抽取中文数字的函数。
 
 本包支援：
+
 * 任何数值不大於10<sup>18</sup>（一百京）之正负数转换
 * 小数点转换
 * 繁体及简体中文

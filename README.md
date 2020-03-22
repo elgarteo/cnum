@@ -15,21 +15,34 @@ in R, such as conversion between Chinese numerals and Arabic numerals as
 well as detection and extraction of Chinese numerals in character
 objects and string.
 
-*cnum* supports: \* Conversion of any numbers of absolute value up to
-10<sup>18</sup> \* Conversion of decimal numbers \* Traditional and
-Simplified Chinese \* Financial numeral characters \* Four scale naming
-systems including the casual and SI standard used in and outside
-mainland China
+*cnum* supports:
+
+  - Conversion of any numbers of absolute value up to 10<sup>18</sup>
+  - Conversion of decimal numbers
+  - Traditional and Simplified Chinese
+  - Financial numeral characters
+  - Four scale naming systems including the casual and SI standard used
+    in and outside mainland China
 
 *cnum* 是協助處理中文數字的R套件，提供轉換、識別及抽取中文數字的函數。
 
-本套件支援： \* 任何數值不大於10<sup>18</sup>（一百京）之正負數轉換 \* 小數點轉換 \* 正體及簡體中文 \* 大小寫數字
-\* 四種分別通用於中國大陸內外的日常及國際單位制進位命名法
+本套件支援：
+
+  - 任何數值不大於10<sup>18</sup>（一百京）之正負數轉換
+  - 小數點轉換
+  - 正體及簡體中文
+  - 大小寫數字
+  - 四種分別通用於中國大陸內外的日常及國際單位制進位命名法
 
 *cnum* 是协助处理中文数字的R包，提供转换、识别及抽取中文数字的函数。
 
-本包支援： \* 任何数值不大於10<sup>18</sup>（一百京）之正负数转换 \* 小数点转换 \* 繁体及简体中文 \* 大小写数字
-\* 四种分别通用於中国内地內外的日常及国际單位制进位命名法
+本包支援：
+
+  - 任何数值不大於10<sup>18</sup>（一百京）之正负数转换
+  - 小数点转换
+  - 繁体及简体中文
+  - 大小写数字
+  - 四种分别通用於中国内地內外的日常及国际單位制进位命名法
 
 ## Installing
 
