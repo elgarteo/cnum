@@ -5,10 +5,10 @@
 #'
 #' @param x the character object or string to be tested or to extract from.
 #'
-#' @param strict logcial: Should the Chinese numerals format be strictly
+#' @param strict logical: Should the Chinese numerals format be strictly
 #'   enforced? A casual test only checks if \code{x} contains Chinese numerals
 #'   characters. A strict test checks if \code{x} is valid Chinese numerals.
-#'   (e.g. "\emph{yi bai yi}" will pass the casual test and fail the strcit
+#'   (e.g. "\emph{yi bai yi}" will pass the casual test and fail the strict
 #'   test)
 #'
 #' @param ... optional arguments to be passed to \code{\link[base]{grepl}} (for
@@ -19,6 +19,17 @@
 #' @inheritParams conversion
 #'
 #' @inheritSection conversion Details
+#'
+#' @references The standard for mode \code{"SIprefix"} \emph{Names, Definitions
+#'   and Symbols of the Legal Units of Measurement and the Decimal Multiples and
+#'   Submultiples} is available from
+#'   \url{https://gazette.nat.gov.tw/egFront/detail.do?metaid=108965} (in
+#'   Traditional Chinese).
+#'
+#'   The standard for mode \code{"SIprefixPRC"} \emph{China Statutory
+#'   Measurement Units} is available from
+#'   \url{http://gkml.samr.gov.cn/nsjg/jls/201902/t20190225_291134.html} (in
+#'   Simplified Chinese).
 #'
 #' @seealso \link[=conversion]{Functions for conversion}
 #'
@@ -36,7 +47,7 @@ NULL
 #'
 #' @export
 #'
-is_cnum <- function(x, lang = "tc", mode = "casual", financial = FALSE,
+is_cnum <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FALSE,
                     literal = FALSE, strict = FALSE, ...) {
   if (strict) {
     if (length(x) > 1) {
@@ -65,7 +76,7 @@ is_cnum <- function(x, lang = "tc", mode = "casual", financial = FALSE,
 #'
 #' @export
 #'
-has_cnum <- function(x, lang = "tc", mode = "casual", financial = FALSE, ...) {
+has_cnum <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FALSE, ...) {
   if (length(x) > 1) {
     return(sapply(x, function(y) has_cnum(y, lang, mode, financial, ...)))
   }
@@ -82,6 +93,6 @@ has_cnum <- function(x, lang = "tc", mode = "casual", financial = FALSE, ...) {
 #'
 #' @export
 #'
-extract_cnum <- function(x, lang = "tc", mode = "casual", financial = FALSE, ...) {
+extract_cnum <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FALSE, ...) {
   stringr::str_extract_all(x, return_regex(lang, mode, financial, FALSE), ...)
 }

@@ -9,7 +9,7 @@
 #'
 #' @export
 #'
-c2num <- function(x, lang = "tc", mode = "casual", financial = FALSE, literal = FALSE) {
+c2num <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FALSE, literal = FALSE) {
   if (length(x) > 1) {
     return(sapply(x, function(y) c2num(y, lang, mode, financial)))
   }

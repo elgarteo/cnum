@@ -9,7 +9,7 @@
 \usage{
 is_cnum(
   x,
-  lang = "tc",
+  lang = default_cnum_lang(),
   mode = "casual",
   financial = FALSE,
   literal = FALSE,
@@ -17,15 +17,29 @@ is_cnum(
   ...
 )
 
-has_cnum(x, lang = "tc", mode = "casual", financial = FALSE, ...)
+has_cnum(
+  x,
+  lang = default_cnum_lang(),
+  mode = "casual",
+  financial = FALSE,
+  ...
+)
 
-extract_cnum(x, lang = "tc", mode = "casual", financial = FALSE, ...)
+extract_cnum(
+  x,
+  lang = default_cnum_lang(),
+  mode = "casual",
+  financial = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{the character object or string to be tested or to extract from.}
 
 \item{lang}{the language of the Chinese numerals. \code{"tc"} for Traditional
-Chinese. \code{"sc"} for Simplified Chinese.}
+Chinese. \code{"sc"} for Simplified Chinese. The default is \code{"tc"},
+but this can be changed by setting \code{\link[options]{options}(cnum.lang
+= "sc")}.}
 
 \item{mode}{the scale naming system to be enforced. See the ‘Details’ section
 for the list of supported modes.}
@@ -33,14 +47,14 @@ for the list of supported modes.}
 \item{financial}{logical: should the financial numerals be used (\emph{daxie
 shuzi})?}
 
-\item{literal}{logical: should the numberals be converted literally? (e.g.
-721 to be converted to "\emph{qi er yi}" instead of "\emph{qibai ershiyi}"
-and vice versa)}
+\item{literal}{logical: should the numerals be converted literally? (e.g. 721
+to be converted to "\emph{qi er yi}" instead of "\emph{qibai ershiyi}" and
+vice versa)}
 
-\item{strict}{logcial: Should the Chinese numerals format be strictly
+\item{strict}{logical: Should the Chinese numerals format be strictly
 enforced? A casual test only checks if \code{x} contains Chinese numerals
 characters. A strict test checks if \code{x} is valid Chinese numerals.
-(e.g. "\emph{yi bai yi}" will pass the casual test and fail the strcit
+(e.g. "\emph{yi bai yi}" will pass the casual test and fail the strict
 test)}
 
 \item{...}{optional arguments to be passed to \code{\link[base]{grepl}} (for
@@ -93,6 +107,18 @@ has_cnum("hello")
 
 extract_cnum("hello")
 
+}
+\references{
+The standard for mode \code{"SIprefix"} \emph{Names, Definitions
+  and Symbols of the Legal Units of Measurement and the Decimal Multiples and
+  Submultiples} is available from
+  \url{https://gazette.nat.gov.tw/egFront/detail.do?metaid=108965} (in
+  Traditional Chinese).
+
+  The standard for mode \code{"SIprefixPRC"} \emph{China Statutory
+  Measurement Units} is available from
+  \url{http://gkml.samr.gov.cn/nsjg/jls/201902/t20190225_291134.html} (in
+  Simplified Chinese).
 }
 \seealso{
 \link[=conversion]{Functions for conversion}

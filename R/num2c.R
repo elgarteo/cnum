@@ -13,7 +13,7 @@
 #'
 #' @export
 #'
-num2c <- function(x, lang = "tc", mode = "casual", financial = FALSE, literal = FALSE, single = FALSE) {
+num2c <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FALSE, literal = FALSE, single = FALSE) {
   if (length(x) > 1) {
     return(sapply(x, function(y) num2c(y, lang, mode, financial, single)))
   }

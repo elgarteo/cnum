@@ -6,7 +6,9 @@
 #'   The absolute value must not be greater than 1e+18.
 #'
 #' @param lang the language of the Chinese numerals. \code{"tc"} for Traditional
-#'   Chinese. \code{"sc"} for Simplified Chinese.
+#'   Chinese. \code{"sc"} for Simplified Chinese. The default is \code{"tc"},
+#'   but this can be changed by setting \code{\link[options]{options}(cnum.lang
+#'   = "sc")}.
 #'
 #' @param mode the scale naming system to be enforced. See the ‘Details’ section
 #'   for the list of supported modes.
@@ -14,9 +16,9 @@
 #' @param financial logical: should the financial numerals be used (\emph{daxie
 #'   shuzi})?
 #'
-#' @param literal logical: should the numberals be converted literally? (e.g.
-#'   721 to be converted to "\emph{qi er yi}" instead of "\emph{qibai ershiyi}"
-#'   and vice versa)
+#' @param literal logical: should the numerals be converted literally? (e.g. 721
+#'   to be converted to "\emph{qi er yi}" instead of "\emph{qibai ershiyi}" and
+#'   vice versa)
 #'
 #' @param single logical: should the return result with one scale character
 #'   only? (e.g. 1.5e+08 as "\emph{yi dian wuyi}" instead of "\emph{yiyi
@@ -45,7 +47,7 @@
 #'   and Symbols of the Legal Units of Measurement and the Decimal Multiples and
 #'   Submultiples} is available from
 #'   \url{https://gazette.nat.gov.tw/egFront/detail.do?metaid=108965} (in
-#'   Traditonal Chinese).
+#'   Traditional Chinese).
 #'
 #'   The standard for mode \code{"SIprefixPRC"} \emph{China Statutory
 #'   Measurement Units} is available from
