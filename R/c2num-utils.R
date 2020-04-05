@@ -136,7 +136,7 @@ split_numeral <- function(number, conv_t, mode) {
   if (!all(number_split %in% c(chr_t$c, scale_t$c, zero, dot, neg))) {
     msg <- paste0("* `", number_split[!number_split %in% c(chr_t$c, scale_t$c, zero, dot, neg)],
                   "` is not a valid Chinese numeral character\n")
-    stop("`x` contains non-Chinese numerals in mode `", mode, "`:\n", msg)
+    stop("`x` contains non-Chinese numerals in mode `", mode, "`:\n", msg, call. = FALSE)
   }
   number_split
 }
