@@ -7,7 +7,7 @@
 #'
 #' @param lang the language of the Chinese numerals. \code{"tc"} for Traditional
 #'   Chinese. \code{"sc"} for Simplified Chinese. The default is \code{"tc"},
-#'   but this can be changed by setting \code{\link[options]{options}(cnum.lang
+#'   but this can be changed by setting \code{\link[base]{options}(cnum.lang
 #'   = "sc")}.
 #'
 #' @param mode the scale naming system to be enforced. See the ‘Details’ section
