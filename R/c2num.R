@@ -31,10 +31,13 @@ c2num <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FA
     neg <- ""
   }
 
-  i <- grep(dot, number_split) # index of dot
-  j <- ifelse(any(number_split %in% scale_t$c), # index of last scale char
+  i <- grep(dot, number_split) # position of dot
+  j <- ifelse(any(number_split %in% scale_t$c), # position of last scale char
               max(which(number_split %in% scale_t$c)), 0)
-  if (length(i) == 1) {
+  if (length(i) > 1) {
+    stop("`x` must not contain more than one occurance of `", dot, "`.")
+  }
+  if (length(i)) {
     if (i < j & j == length(number_split)) {
       # the position of dot is before a scale char: a numeral with single scale char
       converted <- as.numeric(paste0(neg, c2integer(number_split[1:(i - 1)], conv_t),
@@ -49,15 +52,14 @@ c2num <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FA
                                        c2decimal(number_split[i:length(number_split)], conv_t)))
       }
     }
-  } else if (length(i) == 0) {
+  } else {
     if (literal) {
       converted <- as.numeric(paste0(neg, c2integer_literal(number_split, conv_t)))
     } else {
       converted <- as.numeric(paste0(neg, c2integer(number_split, conv_t)))
     }
-  } else {
-    stop("`x` must not contain more than one occurance of `", dot, "`.")
   }
+
   if (x != num2c(converted, lang, mode, financial, literal)) {
     if (x != num2c(converted, lang, mode, financial, literal, single = TRUE)) {
       stop("`x` is not valid Chinese numeral.")

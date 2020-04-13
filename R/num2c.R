@@ -20,13 +20,11 @@ num2c <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FA
   if (!is.numeric(x)) {
     stop("`x` must be numeric.")
   }
-
-  conv_t <- conv_table(lang, mode, financial)
-  maximum <- 10^max(conv_t[["scale_t"]]$n)
   if (abs(x) > 1e18) {
     stop("Absolute value of `x` must not be greater than ", 1e18, ".")
   }
 
+  conv_t <- conv_table(lang, mode, financial)
   if (x < 0) {
     neg_chr <- conv_t[["neg"]]
     x <- gsub("-", "", x)
