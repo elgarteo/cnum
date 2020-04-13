@@ -1,8 +1,9 @@
 Package: cnum
 Type: Package
 Title: Chinese Numerals Processing
-Version: 0.1.0
-Author: Elgar Teo
+Version: 0.1.1
+Authors@R: person("Elgar", "Teo", email = "elgarteo@connect.hku.hk",
+    role = c("aut", "cre"))
 Maintainer: Elgar Teo <elgarteo@connect.hku.hk>
 URL: https://github.com/elgarteo/cnum/
 BugReports: https://github.com/elgarteo/cnum/issues

@@ -29,8 +29,8 @@ The absolute value must not be greater than 1e+18.}
 
 \item{lang}{the language of the Chinese numerals. \code{"tc"} for Traditional
 Chinese. \code{"sc"} for Simplified Chinese. The default is \code{"tc"},
-but this can be changed by setting \code{\link[base]{options}(cnum.lang
-= "sc")}.}
+but this can be changed by setting \code{\link[base]{options}(cnum.lang =
+"sc")}.}
 
 \item{mode}{the scale naming system to be enforced. See the ‘Details’ section
 for the list of supported modes.}

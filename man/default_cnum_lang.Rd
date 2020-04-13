@@ -17,7 +17,7 @@ This package supports Traditional Chinese and Simplified Chinese. The
 language can be specified with the \code{lang} parameter in every function,
 with \code{"tc"} for Traditional Chinese and \code{"sc"} for Simplified
 Chinese. The default is \code{"tc"}, but this can be changed by setting
-\code{\link[options]{options}(cnum.lang = "sc")}.
+\code{\link[base]{options}(cnum.lang = "sc")}.
 }
 \examples{
 \donttest{

@@ -112,7 +112,14 @@ extract_cnum("六万亿元", lang = "sc", mode = "casualPRC")
 extract_cnum(c("加價一百八十元", "加價五十六元"))
 ```
 
+The default language is Traditional Chinese. This can be changed by setting:
+
+```{r change_lang, eval=FALSE}
+options(cnum.lang = "sc")
+```
+
 ## To-Do
 
+* Migrate core conversion algorithm to Rcpp to improve performance
 * Add support for fractions and percentage
 * Add support for SI naming in decimal places (e.g. 1<sup>-6</sup> as 一微)

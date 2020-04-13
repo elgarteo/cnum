@@ -6,7 +6,7 @@
 #' language can be specified with the \code{lang} parameter in every function,
 #' with \code{"tc"} for Traditional Chinese and \code{"sc"} for Simplified
 #' Chinese. The default is \code{"tc"}, but this can be changed by setting
-#' \code{\link[options]{options}(cnum.lang = "sc")}.
+#' \code{\link[base]{options}(cnum.lang = "sc")}.
 #'
 #' @return The default language for \code{cnum} functions.
 #'
@@ -27,6 +27,6 @@ default_cnum_lang <- function() {
   if (is.null(val))
     val <- "tc"
   if (!val %in% return_langs() || is.na(val) || length(val) != 1L)
-    stop("lang `", val, "` set by options(\"cnum.lang\") unsupported.")
+    stop("unsupported language `", val, "` set by options(\"cnum.lang\").")
   val
 }
