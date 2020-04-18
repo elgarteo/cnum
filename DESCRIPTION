@@ -1,7 +1,7 @@
 Package: cnum
 Type: Package
 Title: Chinese Numerals Processing
-Version: 0.1.1
+Version: 0.1.1.5
 Authors@R: person("Elgar", "Teo", email = "elgarteo@connect.hku.hk",
     role = c("aut", "cre"))
 Maintainer: Elgar Teo <elgarteo@connect.hku.hk>
@@ -20,8 +20,12 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Depends: R(>= 2.10)
 Imports:
-    stringr
+    stringr,
+    Rcpp
 Suggests:
     magrittr
+LinkingTo: 
+    Rcpp
+SystemRequirements: C++11
 LazyData: true
 RoxygenNote: 7.1.0

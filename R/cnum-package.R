@@ -21,5 +21,7 @@
 #' @docType package
 #' @keywords internal
 #' @importFrom stringr str_extract_all
+#' @importFrom Rcpp sourceCpp
+#' @useDynLib cnum, .registration = TRUE
 #'
 "_PACKAGE"
