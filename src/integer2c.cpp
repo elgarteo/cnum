@@ -1,13 +1,13 @@
 #include <Rcpp.h>
 #include <string>
 #include <regex>
-#include "utils.h"
+#include "integer2c-utils.h"
 
 using namespace Rcpp;
 
 // Function to convert integer to Chinese numeral
 // [[Rcpp::export]]
-std::string integer2c(const long number_r, const List conv_t)
+std::string integer2c(const long long number_r, const List conv_t)
 {
   const std::wstring zero = s2ws(conv_t["zero"]);
 
@@ -21,17 +21,12 @@ std::string integer2c(const long number_r, const List conv_t)
 
   const std::string number = std::to_string(number_r);
   const int n = number.size() - 1;
-  std::wstring converted;
+  std::wstring converted, sub_converted;
   int i = 0;
   int scale_n = n;
-  int digit;
-  NumericVector n_col;
-  NumericVector lowers;
-  int lower_scale;
-  int scale_diff;
+  int digit, lower_scale, scale_diff, sub_number_n;
+  NumericVector n_col = scale_t["n"], lowers;
   std::string sub_number;
-  int sub_number_n;
-  std::wstring sub_converted;
   const std::regex zerohead("^0");
 
   while (i <= n) {
@@ -44,15 +39,14 @@ std::string integer2c(const long number_r, const List conv_t)
         converted += subset_df(chr_t, digit - 1); // respective Chinese numeral of the digit
         converted += subset_df(scale_t, scale_n); // respective Chinese numeral of the scale
       }
-      i += 1;
-      scale_n -= 1;
+      ++i;
+      --scale_n;
     } else {
       // recursive, e.g. process the bracketed digits (100)0000 to form 百萬
-      n_col = scale_t["n"];
-      lowers = n_col[scale_n > n_col]; // find all lower scales
-      lower_scale = max(lowers); // the next lower scale
+      lowers = n_col[(scale_n + 1) > n_col]; // find all lower scales
+      lower_scale = max(lowers) - 1; // the next lower scale
       scale_diff = scale_n - lower_scale; // difference of current and next lower scale
-      sub_number = number.substr(i, scale_diff + 1); // sub-number for recursive_conversion
+      sub_number = number.substr(i, scale_diff + 1); // sub-number for recursive conversion
       sub_number_n = std::stoi(sub_number);
       if (sub_number_n > 0) {
         sub_converted = s2ws(integer2c(sub_number_n, conv_t)); // recursive_conversion
@@ -64,8 +58,8 @@ std::string integer2c(const long number_r, const List conv_t)
           sub_converted = zero + sub_converted;
         converted = (converted + sub_converted) + subset_df(scale_t, lower_scale);
       }
-      i = i + scale_diff + 1;
-      scale_n = scale_n - scale_diff - 1;
+      i += scale_diff + 1;
+      scale_n -= scale_diff + 1;
     }
   }
   // correct "一十一" to "十一"
@@ -86,8 +80,8 @@ std::string integer2c_literal(const long number_r, const List conv_t)
   const std::string number = std::to_string(number_r);
   std::wstring converted;
   int digit;
-  for (int i = 0; i < number.size(); i++) {
-    digit = number[i] - 48;
+  for (auto& n : number) {
+    digit = n - 48;
     if (digit == 0)
       converted += zero;
     else

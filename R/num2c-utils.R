@@ -4,7 +4,7 @@ decimal2c <- function(number, conv_t) {
 
   number <- format(number, scientific = FALSE)
   number <- gsub(".*\\.", "", number)
-  paste0(dot, integer2c_literal(number, conv_t))
+  paste0(dot, integer2c_literal(as.numeric(number), conv_t))
 }
 
 ## Function to convert integer to Chinese numeral with single scale character

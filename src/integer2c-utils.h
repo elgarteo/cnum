@@ -20,7 +20,8 @@ std::string ws2s(const std::wstring& wstr)
 }
 
 // Function to return whether y is an element of x
-bool contains(const Rcpp::CharacterVector x, const int y)
+template <typename T>
+bool contains(const Rcpp::CharacterVector x, const T y)
 {
   return std::find(x.begin(), x.end(), y) != x.end();
 }
@@ -28,18 +29,19 @@ bool contains(const Rcpp::CharacterVector x, const int y)
 // Function to return index of matching element in vector
 int subset_num(const Rcpp::NumericVector x, const int y)
 {
-  int idx = 0;
-  for (int i = 0; i < x.length(); i++) {
+  int index = 0;
+  for (int i = 0; i < x.size(); ++i) {
     if (x[i] == y + 1) {
-      idx = i;
+      index = i;
       break;
     }
   }
-  return idx;
+  return index;
 }
 
 // Function to return the corresponding chr of df$c given n of df$n
-std::wstring subset_df(const Rcpp::DataFrame df, const int n) {
+std::wstring subset_df(const Rcpp::DataFrame df, const int n)
+{
   const Rcpp::NumericVector n_col = df["n"];
   const Rcpp::CharacterVector c_col = df["c"];
   const int index = subset_num(n_col, n);

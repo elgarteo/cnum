@@ -5,13 +5,37 @@
 
 using namespace Rcpp;
 
+// c2integer
+long long c2integer(const std::vector<std::string> number, const List conv_t);
+RcppExport SEXP _cnum_c2integer(SEXP numberSEXP, SEXP conv_tSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const std::vector<std::string> >::type number(numberSEXP);
+    Rcpp::traits::input_parameter< const List >::type conv_t(conv_tSEXP);
+    rcpp_result_gen = Rcpp::wrap(c2integer(number, conv_t));
+    return rcpp_result_gen;
+END_RCPP
+}
+// c2integer_literal
+std::string c2integer_literal(const std::vector<std::string> number, const List conv_t);
+RcppExport SEXP _cnum_c2integer_literal(SEXP numberSEXP, SEXP conv_tSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const std::vector<std::string> >::type number(numberSEXP);
+    Rcpp::traits::input_parameter< const List >::type conv_t(conv_tSEXP);
+    rcpp_result_gen = Rcpp::wrap(c2integer_literal(number, conv_t));
+    return rcpp_result_gen;
+END_RCPP
+}
 // integer2c
-std::string integer2c(const long number_r, const List conv_t);
+std::string integer2c(const long long number_r, const List conv_t);
 RcppExport SEXP _cnum_integer2c(SEXP number_rSEXP, SEXP conv_tSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const long >::type number_r(number_rSEXP);
+    Rcpp::traits::input_parameter< const long long >::type number_r(number_rSEXP);
     Rcpp::traits::input_parameter< const List >::type conv_t(conv_tSEXP);
     rcpp_result_gen = Rcpp::wrap(integer2c(number_r, conv_t));
     return rcpp_result_gen;
@@ -31,6 +55,8 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_cnum_c2integer", (DL_FUNC) &_cnum_c2integer, 2},
+    {"_cnum_c2integer_literal", (DL_FUNC) &_cnum_c2integer_literal, 2},
     {"_cnum_integer2c", (DL_FUNC) &_cnum_integer2c, 2},
     {"_cnum_integer2c_literal", (DL_FUNC) &_cnum_integer2c_literal, 2},
     {NULL, NULL, 0}
