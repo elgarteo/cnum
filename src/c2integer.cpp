@@ -45,7 +45,7 @@ long long c2integer(const std::vector<std::string> number, const List conv_t)
     }
     if (scale_n[i - 1] > 0) {
       // if previous numeral is also a scale char, e.g. 一百萬
-      scale_stack.push_back(std::accumulate(normal_stack.begin(), normal_stack.end(), 0LL)* digit_n);
+      scale_stack.push_back(std::accumulate(normal_stack.begin(), normal_stack.end(), 0LL) * digit_n);
       normal_stack = {0};
     }
     if (!contains(scale_t["n"], scale_n[i] - 1)) {
@@ -57,9 +57,10 @@ long long c2integer(const std::vector<std::string> number, const List conv_t)
       continue;
     }
     if (i > 1) {
-      for (int j = scale_n.size() - 2; j >= 0; --j) {
-        if (scale_n[j] != 0) {
-          previous_scale = scale_n[j];
+      std::vector<int>::iterator j;
+      for (j = scale_n.end() - 2; j >= scale_n.begin(); --j) { // find previous scale
+        if (*j != 0) {
+          previous_scale = *j;
           break;
         }
       }

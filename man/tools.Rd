@@ -78,11 +78,14 @@ string.
 }
 \section{Functions}{
 \itemize{
-\item \code{is_cnum}: Test if character object is Chinese numerals
+\item \code{is_cnum}: Test if character object is Chinese numerals. A wrapper
+around \code{\link[base]{grepl}}.
 
-\item \code{has_cnum}: Test if string contains Chinese numerals
+\item \code{has_cnum}: Test if string contains Chinese numerals. A wrapper around
+\code{\link[base]{grepl}}.
 
-\item \code{extract_cnum}: Extract Chinese numerals from string
+\item \code{extract_cnum}: Extracts Chinese numerals from string. A wrapper around
+\code{\link[stringr]{str_extract_all}} from \code{stringr}.
 }}
 
 \section{Details}{

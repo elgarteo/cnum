@@ -19,7 +19,7 @@ split_numeral <- function(number, conv_t, mode) {
   is_mchr <- nchar(scale_t$c) > 1
   if (any(is_mchr)) {
     mchr <- scale_t$c[is_mchr]
-    if (grepl(mchr, number)) {
+    if (any(stringr::str_detect(number, mchr))) {
       for (x in mchr) {
         index <- integer()
         # search through numerals for multichar
@@ -34,10 +34,7 @@ split_numeral <- function(number, conv_t, mode) {
           }
           i <- i + 1
         }
-        if (!length(index)) {
-          # if mulichar scale char not found
-          next
-        }
+        if (!length(index)) next # skip if mulichar scale char not found
         i <- 1
         tmp <- character()
         while (i <= length(number_split)) {

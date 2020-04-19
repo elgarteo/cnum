@@ -37,7 +37,8 @@
 #'
 NULL
 
-#' @describeIn tools Test if character object is Chinese numerals
+#' @describeIn tools Test if character object is Chinese numerals. A wrapper
+#'   around \code{\link[base]{grepl}}.
 #'
 #' @return \code{is_cnum} returns a logical vector indicating is Chinese
 #'   numerals or not for each element of \code{x}).
@@ -66,7 +67,8 @@ is_cnum <- function(x, lang = default_cnum_lang(), mode = "casual", financial = 
   }
 }
 
-#' @describeIn tools Test if string contains Chinese numerals
+#' @describeIn tools Test if string contains Chinese numerals. A wrapper around
+#'   \code{\link[base]{grepl}}.
 #'
 #' @return \code{has_cnum} returns a logical vector indicating contains Chinese
 #'   numerals or not for each element of \code{x}).
@@ -83,7 +85,8 @@ has_cnum <- function(x, lang = default_cnum_lang(), mode = "casual", financial =
   grepl(return_regex(lang, mode, financial, FALSE), x, ...)
 }
 
-#' @describeIn tools Extract Chinese numerals from string
+#' @describeIn tools Extracts Chinese numerals from string. A wrapper around
+#'   \code{\link[stringr]{str_extract_all}} from \code{stringr}.
 #'
 #' @return \code{extract_cnum} returns a list of character vectors containing
 #'   the extracted Chinese numerals.

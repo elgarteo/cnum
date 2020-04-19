@@ -24,7 +24,7 @@ c2num <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FA
 
   number_split <- split_numeral(x, conv_t, mode)
 
-  if (grepl(conv_t[["neg"]], number_split[1])) {
+  if (number_split[1] == conv_t[["neg"]]) {
     neg <- "-"
     number_split <- number_split[-1]
   } else {

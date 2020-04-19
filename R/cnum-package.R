@@ -20,7 +20,7 @@
 #'
 #' @docType package
 #' @keywords internal
-#' @importFrom stringr str_extract_all
+#' @importFrom stringr str_detect str_extract_all
 #' @importFrom Rcpp sourceCpp
 #' @useDynLib cnum, .registration = TRUE
 #'
