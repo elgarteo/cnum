@@ -25,7 +25,8 @@ Imports:
 Suggests:
     magrittr
 LinkingTo: 
-    Rcpp
+    Rcpp,
+    BH
 SystemRequirements: C++11
 LazyData: true
 RoxygenNote: 7.1.0

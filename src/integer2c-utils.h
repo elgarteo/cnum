@@ -1,22 +1,21 @@
 #include <Rcpp.h>
 #include <string>
-#include <codecvt>
-#include <locale>
+#include <boost/locale/encoding_utf.hpp>
+
+// [[Rcpp::depends(BH)]]
 
 // Function to convert string to wstring
 std::wstring s2ws(const std::string& str)
 {
-  using convert_typeX = std::codecvt_utf8<wchar_t>;
-  std::wstring_convert<convert_typeX, wchar_t> converterX;
-  return converterX.from_bytes(str);
+  using boost::locale::conv::utf_to_utf;
+  return utf_to_utf<wchar_t>(str.c_str(), str.c_str() + str.size());
 }
 
 // Function to convert wstring to string
 std::string ws2s(const std::wstring& wstr)
 {
-  using convert_typeX = std::codecvt_utf8<wchar_t>;
-  std::wstring_convert<convert_typeX, wchar_t> converterX;
-  return converterX.to_bytes(wstr);
+  using boost::locale::conv::utf_to_utf;
+  return utf_to_utf<char>(wstr.c_str(), wstr.c_str() + wstr.size());
 }
 
 // Function to return whether y is an element of x
@@ -26,7 +25,7 @@ bool contains(const Rcpp::CharacterVector x, const T y)
   return std::find(x.begin(), x.end(), y) != x.end();
 }
 
-// Function to return index of matching element in vector
+// Function to return index of a matching element in a numeric vector
 int subset_num(const Rcpp::NumericVector x, const int y)
 {
   int index = 0;

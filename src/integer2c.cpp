@@ -27,7 +27,6 @@ std::string integer2c(const long long number_r, const List conv_t)
   int digit, lower_scale, scale_diff, sub_number_n;
   NumericVector n_col = scale_t["n"], lowers;
   std::string sub_number;
-  const std::regex zerohead("^0");
 
   while (i <= n) {
     if (contains(scale_t["n"], scale_n + 1)) {
@@ -53,7 +52,7 @@ std::string integer2c(const long long number_r, const List conv_t)
         if ((10 <= sub_number_n) && (sub_number_n <= 19))
           // add one when neccessary, e.g. 一兆零(一)十三億
           sub_converted = one + sub_converted;
-        if (std::regex_search(sub_number, zerohead))
+        if (std::regex_search(sub_number, std::regex("^0")))
           // add zero for scales of digit zero, e.g. 一兆(零)三十三億
           sub_converted = zero + sub_converted;
         converted = (converted + sub_converted) + subset_df(scale_t, lower_scale);

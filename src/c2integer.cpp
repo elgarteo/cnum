@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // Function to convert a Chinese numeral to integer
 // [[Rcpp::export]]
-long long c2integer(const std::vector<std::string> number, const List conv_t)
+long long c2integer_conv(const std::vector<std::string> number, const List conv_t)
 {
   const DataFrame chr_t = as<DataFrame>(conv_t["chr_t"]);
   const DataFrame scale_t = as<DataFrame>(conv_t["scale_t"]);
@@ -18,9 +18,10 @@ long long c2integer(const std::vector<std::string> number, const List conv_t)
   std::vector<int> scale_n; // the scale number of the char, 0 if not scale char
   int tmp = 0; // to hold value of number to be manipulated by scale digit
   std::string digit, scale_place;
-  int previous_scale;
+  int previous_scale = 0;
   long long digit_n;
-  for (int i = 0; i < number.size(); ++i) {
+
+  for (unsigned int i = 0; i < number.size(); ++i) {
     digit = number[i];
     if (digit == zero) {
       // if numeral is zero
@@ -37,7 +38,7 @@ long long c2integer(const std::vector<std::string> number, const List conv_t)
     // if numeral is a scale char
     scale_place = subset_df(scale_t, digit);
     scale_n.push_back(std::stoi(scale_place));
-    digit_n = std::pow(10, scale_n[i] - 1);
+    digit_n = pow10(scale_n[i] - 1);
     if (i == 0) {
       // e.g.  十二
       normal_stack.push_back(digit_n);
@@ -49,16 +50,14 @@ long long c2integer(const std::vector<std::string> number, const List conv_t)
       normal_stack = {0};
     }
     if (!contains(scale_t["n"], scale_n[i] - 1)) {
-      /* # if current scale is a large scale which requires recursive scaling,
-       * e.g. 一億 and 一兆 */
-      scale_stack.push_back(std::accumulate(normal_stack.begin(), normal_stack.end(), 0LL) * digit_n + tmp * digit_n);
+      // if current scale is a large scale which requires recursive scaling, e.g. 一億 and 一兆
+      scale_stack.push_back((std::accumulate(normal_stack.begin(), normal_stack.end(), 0LL) + tmp) * digit_n);
       normal_stack = {0};
       tmp = 0;
       continue;
     }
     if (i > 1) {
-      std::vector<int>::iterator j;
-      for (j = scale_n.end() - 2; j >= scale_n.begin(); --j) { // find previous scale
+      for (auto j = scale_n.end() - 2; j >= scale_n.begin(); --j) { // find previous scale
         if (*j != 0) {
           previous_scale = *j;
           break;
@@ -66,7 +65,7 @@ long long c2integer(const std::vector<std::string> number, const List conv_t)
       }
       if (previous_scale < scale_n[i]) {
         // if previous scale is smaller than current scale, e.g. 一百二十三萬
-        scale_stack.push_back(std::accumulate(normal_stack.begin(), normal_stack.end(), 0LL) * digit_n + tmp * digit_n);
+        scale_stack.push_back((std::accumulate(normal_stack.begin(), normal_stack.end(), 0LL) + tmp) * digit_n);
         normal_stack = {0};
         tmp = 0;
         continue;
