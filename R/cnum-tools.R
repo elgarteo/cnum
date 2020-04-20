@@ -51,27 +51,19 @@ NULL
 is_cnum <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FALSE,
                     literal = FALSE, strict = FALSE, ...) {
   if (strict) {
-    if (length(x) > 1) {
-      return(sapply(x, function(y)
-        is_cnum(y, lang, mode, financial, literal, strict, ...)))
-    }
-    tryCatch(
-      error = function(cnd) {
-        FALSE
-      },
-      if (c2num(x, lang, mode, financial, literal)) {
-        TRUE
-      })
-  } else {
+    if (length(x) > 1)
+      return(sapply(x, function(y) is_cnum(y, lang, mode, financial, literal, strict, ...)))
+    tryCatch(as.logical(c2num(x, lang, mode, financial, literal)),
+             error = function(cnd) FALSE)
+  } else
     grepl(return_regex(lang, mode, financial, TRUE), x, ...)
-  }
 }
 
 #' @describeIn tools Test if string contains Chinese numerals. A wrapper around
 #'   \code{\link[base]{grepl}}.
 #'
 #' @return \code{has_cnum} returns a logical vector indicating contains Chinese
-#'   numerals or not for each element of \code{x}).
+#'   numerals or not for each element of \code{x}.
 #'
 #' @examples
 #' has_cnum("hello")
@@ -79,9 +71,8 @@ is_cnum <- function(x, lang = default_cnum_lang(), mode = "casual", financial = 
 #' @export
 #'
 has_cnum <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FALSE, ...) {
-  if (length(x) > 1) {
+  if (length(x) > 1)
     return(sapply(x, function(y) has_cnum(y, lang, mode, financial, ...)))
-  }
   grepl(return_regex(lang, mode, financial, FALSE), x, ...)
 }
 

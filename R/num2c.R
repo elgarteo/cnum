@@ -14,40 +14,38 @@
 #' @export
 #'
 num2c <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FALSE, literal = FALSE, single = FALSE) {
-  if (length(x) > 1) {
+  if (length(x) > 1)
     return(sapply(x, function(y) num2c(y, lang, mode, financial, single)))
-  }
-  if (!is.numeric(x)) {
+
+  if (!is.numeric(x))
     stop("`x` must be numeric.")
-  }
-  if (abs(x) > 1e18) {
+
+  if (abs(x) > 1e18)
     stop("Absolute value of `x` must not be greater than ", 1e18, ".")
-  }
 
   conv_t <- conv_table(lang, mode, financial)
   if (x < 0) {
     neg_chr <- conv_t[["neg"]]
     x <- gsub("-", "", x)
     x <- as.numeric(x)
-  } else {
+  } else
     neg_chr <- ""
-  }
-
-  if (single & x >= 11) {
+  # single scale char
+  if (single & x >= 11)
     paste0(neg_chr, integer2c_single(x, conv_t))
-  } else if (x %% 1 == 0) {
-    if (literal) {
-      paste0(neg_chr, integer2c_literal(x, conv_t))
+  else {
+    if (x %% 1 == 0) {
+      # integer
+      if (literal)
+        paste0(neg_chr, integer2c_literal(x, conv_t))
+      else
+        paste0(neg_chr, integer2c(x, conv_t))
     } else {
-      paste0(neg_chr, integer2c(x, conv_t))
-    }
-  } else {
-    if (literal) {
-      paste0(neg_chr, integer2c_literal(floor(x), conv_t),
-             decimal2c(x %% 1, conv_t))
-    } else {
-      paste0(neg_chr, integer2c(floor(x), conv_t),
-             decimal2c(x %% 1, conv_t))
+      # decimal
+      if (literal)
+        paste0(neg_chr, integer2c_literal(floor(x), conv_t), decimal2c(x %% 1, conv_t))
+      else
+        paste0(neg_chr, integer2c(floor(x), conv_t), decimal2c(x %% 1, conv_t))
     }
   }
 }

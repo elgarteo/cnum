@@ -1,3 +1,12 @@
+## Function to convert a Chinese numeral to integer then validate
+c2integer <- function(number, conv_t) {
+  converted <- c2integer_conv(number, conv_t)
+  validate <- integer2c(converted, conv_t)
+  if (validate != paste0(number, collapse = ""))
+    stop("`x` is not valid Chinese numeral.", call. = FALSE)
+  converted
+}
+
 ## Function to convert a Chinese numeral to decimal scale
 c2decimal <- function(number, conv_t) {
   dot <- conv_t[["dot"]]
@@ -28,10 +37,9 @@ split_numeral <- function(number, conv_t, mode) {
         while (i <= length(number_split)) {
           # merge current and previous char
           merged <- paste0(number_split[(i - j + 1):i], collapse = "")
-          if (merged == x) {
+          if (merged == x)
             # if found multichar, save starting and ending index numbers
             index <- c(index, i - j + 1, i)
-          }
           i <- i + 1
         }
         if (!length(index)) next # skip if mulichar scale char not found

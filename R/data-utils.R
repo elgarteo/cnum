@@ -44,12 +44,12 @@ return_regex <- function(lang, mode, financial, only) {
 
 ## Function to return conversion table
 conv_table <- function(lang, mode, financial) {
-  if (!lang %in% return_langs()) {
+  if (!lang %in% return_langs())
     stop("unsupported language `", lang, "`.", call. = FALSE)
-  }
-  if (!mode %in% return_modes()) {
+
+  if (!mode %in% return_modes())
     stop("unsupported mode `", mode, "`.", call. = FALSE)
-  }
+
   chr_var <- paste("chr", lang, sep = "_")
   scale_var <- paste("scale", mode, lang, sep = "_")
   interval_var <- paste("interval", mode, sep = "_")
