@@ -15,13 +15,10 @@
 #'
 num2c <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FALSE, literal = FALSE, single = FALSE) {
   if (length(x) > 1)
-    return(sapply(x, function(y) num2c(y, lang, mode, financial, single)))
+    return(sapply(x, function(y) num2c(y, lang, mode, financial, literal, single)))
 
   if (!is.numeric(x))
     stop("`x` must be numeric.")
-
-  if (abs(x) > 1e18)
-    stop("Absolute value of `x` must not be greater than ", 1e18, ".")
 
   conv_t <- conv_table(lang, mode, financial)
   if (x < 0) {
@@ -36,16 +33,23 @@ num2c <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FA
   else {
     if (x %% 1 == 0) {
       # integer
+      x <- format(x, scientific = FALSE)
       if (literal)
         paste0(neg_chr, integer2c_literal(x, conv_t))
       else
         paste0(neg_chr, integer2c(x, conv_t))
     } else {
       # decimal
+      n <- nchar(gsub("^.*\\.", "", x)) # count deciaml places
+      x <- format(x, scientific = FALSE, nsmall = ifelse(n > 20, 20, n))
+      int <- gsub("\\..*$", "", x)
+      dec <- gsub("^..*\\.", "", x)
       if (literal)
-        paste0(neg_chr, integer2c_literal(floor(x), conv_t), decimal2c(x %% 1, conv_t))
+        paste0(neg_chr, integer2c_literal(int, conv_t),
+               conv_t[["dot"]], integer2c_literal(dec, conv_t))
       else
-        paste0(neg_chr, integer2c(floor(x), conv_t), decimal2c(x %% 1, conv_t))
+        paste0(neg_chr, integer2c(int, conv_t),
+               conv_t[["dot"]], integer2c_literal(dec, conv_t))
     }
   }
 }

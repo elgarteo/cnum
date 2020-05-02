@@ -11,16 +11,16 @@ such as conversion between Chinese numerals and Arabic numerals as well as
 detection and extraction of Chinese numerals in character objects and string.
 }
 \note{
-Due to technical limitation, R package documentation cannot contain
-  Chinese characters. Therefore, the Chinese characters are represented in
-  romanized Chinese \emph{pinyin} in the documentation and substituted with
-  \emph{"hello"} in some of the example code. Visit the GitHub page for
-  clearer examples with Chinese characters.
+Due to technical limitation, R package documentation cannot contain any
+  non-ASCII characters. Therefore, Chinese characters are represented in
+  romanized Chinese \emph{pinyin} in the documentation. Visit the GitHub page
+  for examples in Chinese.
 }
 \section{Warnings}{
- The precision of converting large numbers and long
-  decimals is limited in base R. You might be able to improve the accuracy by
-  running \code{options(digits = 22)}.
+ This package supports conversion of numbers with absolute
+  value not greater than 1e+18. Note that numbers in R are in double
+  precision that carries approximately 16 significant digits. The conversion
+  accuracy for numbers beyond this limit is therefore not guaranteed.
 }
 
 \seealso{

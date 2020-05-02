@@ -9,11 +9,11 @@ c2integer_literal <- function(number, conv_t) {
     .Call(`_cnum_c2integer_literal`, number, conv_t)
 }
 
-integer2c <- function(number_r, conv_t) {
-    .Call(`_cnum_integer2c`, number_r, conv_t)
+integer2c <- function(number, conv_t) {
+    .Call(`_cnum_integer2c`, number, conv_t)
 }
 
-integer2c_literal <- function(number_r, conv_t) {
-    .Call(`_cnum_integer2c_literal`, number_r, conv_t)
+integer2c_literal <- function(number, conv_t) {
+    .Call(`_cnum_integer2c_literal`, number, conv_t)
 }
 

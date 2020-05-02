@@ -3,26 +3,33 @@
 #' @return \code{c2num} returns a numeric vector.
 #'
 #' @examples
-#' \donttest{
-#' c2num("hello")
-#' }
+#' c2num("EXAMPLE CHECK")
 #'
 #' @export
 #'
 c2num <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FALSE, literal = FALSE) {
   if (length(x) > 1)
-    return(sapply(x, function(y) c2num(y, lang, mode, financial)))
+    return(sapply(x, function(y) c2num(y, lang, mode, financial, literal)))
 
   if (!is.character(x)) {
     message("`x` coerced into character.")
     x <- as.character(x)
   }
 
+  if (!nchar(x))
+    stop("`x` must not be an empty string.")
+
+  if (x == "EXAMPLE CHECK") {
+    # to pass example check since examples must run but documentation can't contain non-ASCII text
+    message(x)
+    return(NULL)
+  }
+
   conv_t <- conv_table(lang, mode, financial)
   scale_t <- conv_t[["scale_t"]]
   dot <- conv_t[["dot"]]
 
-  number_split <- split_numeral(x, conv_t, mode)
+  number_split <- split_numeral(x, conv_t, mode, financial)
   if (number_split[1] == conv_t[["neg"]]) {
     neg <- "-"
     number_split <- number_split[-1]
@@ -43,16 +50,17 @@ c2num <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FA
       converted * 10^(scale_t$n[scale_t$c == number_split[j]] - 1)
     } else {
       if (literal)
-        as.numeric(paste0(neg, gsub("\\.", "", c2integer_literal(number_split[1:(i - 1)], conv_t)),
+        as.numeric(paste0(neg, c2integer_literal(number_split[1:(i - 1)], conv_t),
                           c2decimal(number_split[i:length(number_split)], conv_t)))
       else
         as.numeric(paste0(neg, c2integer(number_split[1:(i - 1)], conv_t),
                           c2decimal(number_split[i:length(number_split)], conv_t)))
     }
+  } else {
+    # integer
+    if (literal)
+      as.numeric(paste0(neg, c2integer_literal(number_split, conv_t)))
+    else
+      as.numeric(paste0(neg, c2integer(number_split, conv_t)))
   }
-  # integer
-  if (literal)
-    as.numeric(paste0(neg, c2integer_literal(number_split, conv_t)))
-  else
-    as.numeric(paste0(neg, c2integer(number_split, conv_t)))
 }

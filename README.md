@@ -146,7 +146,6 @@ options(cnum.lang = "sc")
 
 ## To-Do
 
-  - Migrate core conversion algorithm to Rcpp to improve performance
   - Add support for fractions and percentage
   - Add support for SI naming in decimal places (e.g. 1<sup>-6</sup> as
     一微)

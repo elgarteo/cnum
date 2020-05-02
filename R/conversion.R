@@ -35,7 +35,7 @@
 #'   SI prefix system used in mainland China as stipulated in the document
 #'   \emph{China Statutory Measurement Units}.} \item{\code{"SIprefixPRClong"}:
 #'   }{ a variant of \code{"SIprefixPRC"} with long prefixes, e.g. 1e+09 is
-#'   referred to as "\emph{jika}" instead of "\emph{ji}".} }
+#'   referred to as "\emph{yi jika}" instead of "\emph{yi ji}".} }
 #'
 #' @inheritSection cnum-package Warnings
 #' @section Warnings: The modes \code{"casual"} and \code{"casualPRC"}
@@ -57,5 +57,6 @@
 #' @seealso \link[=tools]{Functions for detetction and extraction}
 #'
 #' @name conversion
+#' @order 1
 #'
 NULL

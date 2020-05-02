@@ -34,6 +34,7 @@
 #' @seealso \link[=conversion]{Functions for conversion}
 #'
 #' @name tools
+#' @order 1
 #'
 NULL
 
@@ -44,7 +45,7 @@ NULL
 #'   numerals or not for each element of \code{x}).
 #'
 #' @examples
-#' is_cnum("hello")
+#' is_cnum("yibai ershiyi")
 #'
 #' @export
 #'
@@ -66,7 +67,7 @@ is_cnum <- function(x, lang = default_cnum_lang(), mode = "casual", financial = 
 #'   numerals or not for each element of \code{x}.
 #'
 #' @examples
-#' has_cnum("hello")
+#' has_cnum("yibai bashi yuan")
 #'
 #' @export
 #'
@@ -83,7 +84,7 @@ has_cnum <- function(x, lang = default_cnum_lang(), mode = "casual", financial =
 #'   the extracted Chinese numerals.
 #'
 #' @examples
-#' extract_cnum("hello")
+#' extract_cnum("shisiyi ren")
 #'
 #' @export
 #'

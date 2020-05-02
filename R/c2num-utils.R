@@ -1,7 +1,7 @@
 ## Function to convert a Chinese numeral to integer then validate
 c2integer <- function(number, conv_t) {
   converted <- c2integer_conv(number, conv_t)
-  validate <- integer2c(converted, conv_t)
+  validate <- integer2c(format(converted, scientific = FALSE), conv_t)
   if (validate != paste0(number, collapse = ""))
     stop("`x` is not valid Chinese numeral.", call. = FALSE)
   converted
@@ -10,13 +10,12 @@ c2integer <- function(number, conv_t) {
 ## Function to convert a Chinese numeral to decimal scale
 c2decimal <- function(number, conv_t) {
   dot <- conv_t[["dot"]]
-
   number <- number[-grep(dot, number)]
   paste0(".", c2integer_literal(number, conv_t))
 }
 
 ## Function to split up Chinese numerals
-split_numeral <- function(number, conv_t, mode) {
+split_numeral <- function(number, conv_t, mode, financial) {
   chr_t <- conv_t[["chr_t"]]
   scale_t <- conv_t[["scale_t"]]
   zero <- conv_t[["zero"]]
@@ -64,6 +63,8 @@ split_numeral <- function(number, conv_t, mode) {
   if (!all(number_split %in% c(chr_t$c, scale_t$c, zero, dot, neg))) {
     msg <- paste0("* `", number_split[!number_split %in% c(chr_t$c, scale_t$c, zero, dot, neg)],
                   "` is not a valid Chinese numeral character\n")
+    if (financial)
+      stop("`x` contains non-Chinese financial numerals in mode `", mode, "`:\n", msg, call. = FALSE)
     stop("`x` contains non-Chinese numerals in mode `", mode, "`:\n", msg, call. = FALSE)
   }
   number_split

@@ -1,6 +1,7 @@
 #include <Rcpp.h>
 #include <string>
 #include <boost/locale/encoding_utf.hpp>
+#include "utils.h"
 
 // [[Rcpp::depends(BH)]]
 
@@ -18,13 +19,6 @@ std::string ws2s(const std::wstring& wstr)
   return utf_to_utf<char>(wstr.c_str(), wstr.c_str() + wstr.size());
 }
 
-// Function to return whether y is an element of x
-template <typename T>
-bool contains(const Rcpp::CharacterVector x, const T y)
-{
-  return std::find(x.begin(), x.end(), y) != x.end();
-}
-
 // Function to return index of a matching element in a numeric vector
 int subset_num(const Rcpp::NumericVector x, const int y)
 {
@@ -39,11 +33,10 @@ int subset_num(const Rcpp::NumericVector x, const int y)
 }
 
 // Function to return the corresponding chr of df$c given n of df$n
-std::wstring subset_df(const Rcpp::DataFrame df, const int n)
+std::string subset_df(const Rcpp::DataFrame df, const int n)
 {
   const Rcpp::NumericVector n_col = df["n"];
   const Rcpp::CharacterVector c_col = df["c"];
-  const int index = subset_num(n_col, n);
-  const std::string output = Rcpp::as<std::string>(c_col[index]);
-  return s2ws(output);
+  int index = subset_num(n_col, n);
+  return Rcpp::as<std::string>(c_col[index]);
 }

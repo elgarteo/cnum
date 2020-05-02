@@ -30,26 +30,26 @@ BEGIN_RCPP
 END_RCPP
 }
 // integer2c
-std::string integer2c(const long long number_r, const List conv_t);
-RcppExport SEXP _cnum_integer2c(SEXP number_rSEXP, SEXP conv_tSEXP) {
+std::string integer2c(const std::string number, const List conv_t);
+RcppExport SEXP _cnum_integer2c(SEXP numberSEXP, SEXP conv_tSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const long long >::type number_r(number_rSEXP);
+    Rcpp::traits::input_parameter< const std::string >::type number(numberSEXP);
     Rcpp::traits::input_parameter< const List >::type conv_t(conv_tSEXP);
-    rcpp_result_gen = Rcpp::wrap(integer2c(number_r, conv_t));
+    rcpp_result_gen = Rcpp::wrap(integer2c(number, conv_t));
     return rcpp_result_gen;
 END_RCPP
 }
 // integer2c_literal
-std::string integer2c_literal(const long number_r, const List conv_t);
-RcppExport SEXP _cnum_integer2c_literal(SEXP number_rSEXP, SEXP conv_tSEXP) {
+std::string integer2c_literal(const std::string number, const List conv_t);
+RcppExport SEXP _cnum_integer2c_literal(SEXP numberSEXP, SEXP conv_tSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const long >::type number_r(number_rSEXP);
+    Rcpp::traits::input_parameter< const std::string >::type number(numberSEXP);
     Rcpp::traits::input_parameter< const List >::type conv_t(conv_tSEXP);
-    rcpp_result_gen = Rcpp::wrap(integer2c_literal(number_r, conv_t));
+    rcpp_result_gen = Rcpp::wrap(integer2c_literal(number, conv_t));
     return rcpp_result_gen;
 END_RCPP
 }

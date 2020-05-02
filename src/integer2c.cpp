@@ -7,19 +7,18 @@ using namespace Rcpp;
 
 // Function to convert integer to Chinese numeral
 // [[Rcpp::export]]
-std::string integer2c(const long long number_r, const List conv_t)
+std::string integer2c(const std::string number, const List conv_t)
 {
   const std::wstring zero = s2ws(conv_t["zero"]);
 
-  if (number_r == 0)
+  if (number == "0")
     return ws2s(zero);
 
   const DataFrame chr_t = as<DataFrame>(conv_t["chr_t"]);
   const DataFrame scale_t = as<DataFrame>(conv_t["scale_t"]);
-  const std::wstring one = subset_df(chr_t, 0);
-  const std::wstring ten = subset_df(scale_t, 1);
+  const std::wstring one = s2ws(subset_df(chr_t, 0));
+  const std::wstring ten = s2ws(subset_df(scale_t, 1));
 
-  const std::string number = std::to_string(number_r);
   const int n = number.size() - 1;
   std::wstring converted, sub_converted;
   int i = 0;
@@ -35,8 +34,8 @@ std::string integer2c(const long long number_r, const List conv_t)
       if (digit == 0)
         converted += zero;
       else {
-        converted += subset_df(chr_t, digit - 1); // respective Chinese numeral of the digit
-        converted += subset_df(scale_t, scale_n); // respective Chinese numeral of the scale
+        converted += s2ws(subset_df(chr_t, digit - 1)); // respective Chinese numeral of the digit
+        converted += s2ws(subset_df(scale_t, scale_n)); // respective Chinese numeral of the scale
       }
       ++i;
       --scale_n;
@@ -48,14 +47,14 @@ std::string integer2c(const long long number_r, const List conv_t)
       sub_number = number.substr(i, scale_diff + 1); // sub-number for recursive conversion
       sub_number_n = std::stoi(sub_number);
       if (sub_number_n > 0) {
-        sub_converted = s2ws(integer2c(sub_number_n, conv_t)); // recursive_conversion
+        sub_converted = s2ws(integer2c(sub_number, conv_t)); // recursive_conversion
         if ((10 <= sub_number_n) && (sub_number_n <= 19))
           // add one when neccessary, e.g. 一兆零(一)十三億
           sub_converted = one + sub_converted;
         if (std::regex_search(sub_number, std::regex("^0")))
           // add zero for scales of digit zero, e.g. 一兆(零)三十三億
           sub_converted = zero + sub_converted;
-        converted = (converted + sub_converted) + subset_df(scale_t, lower_scale);
+        converted = (converted + sub_converted) + s2ws(subset_df(scale_t, lower_scale));
       }
       i += scale_diff + 1;
       scale_n -= scale_diff + 1;
@@ -71,13 +70,12 @@ std::string integer2c(const long long number_r, const List conv_t)
 
 // Function to convert integer to Chinese numeral literally
 // [[Rcpp::export]]
-std::string integer2c_literal(const long number_r, const List conv_t)
+std::string integer2c_literal(const std::string number, const List conv_t)
 {
   const DataFrame chr_t = as<DataFrame>(conv_t["chr_t"]);
-  const std::wstring zero = s2ws(conv_t["zero"]);
+  const std::string zero = conv_t["zero"];
 
-  const std::string number = std::to_string(number_r);
-  std::wstring converted;
+  std::string converted;
   int digit;
   for (auto& n : number) {
     digit = n - 48;
@@ -86,5 +84,5 @@ std::string integer2c_literal(const long number_r, const List conv_t)
     else
       converted += subset_df(chr_t, digit - 1); // respective Chinese numeral of the digit
   }
-  return ws2s(converted);
+  return converted;
 }

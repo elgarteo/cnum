@@ -86,13 +86,12 @@ std::string c2integer_literal(const std::vector<std::string> number, const List 
   const DataFrame chr_t = as<DataFrame>(conv_t["chr_t"]);
   const std::string zero = conv_t["zero"];
 
-  std::string digit, converted;
+  std::string converted;
   for (auto& n : number) {
     if (n == zero)
-      digit = zero;
+      converted += "0";
     else
-      digit = subset_df(chr_t, n);
-    converted += digit;
+      converted += subset_df(chr_t, n);
   }
   return converted;
 }
