@@ -30,6 +30,8 @@ extract_cnum(
   lang = default_cnum_lang(),
   mode = "casual",
   financial = FALSE,
+  prefix = NULL,
+  suffix = NULL,
   ...
 )
 }
@@ -61,6 +63,10 @@ test)}
 \code{is_cnum} and \code{has_cnum}) or
 \code{\link[stringr]{str_extract_all}} (for \code{extract_cnum}).
 Disregarded when \code{strict = TRUE}.}
+
+\item{prefix}{the prefix}
+
+\item{suffix}{the suffix}
 }
 \value{
 \code{is_cnum} returns a logical vector indicating is Chinese
@@ -74,7 +80,8 @@ Disregarded when \code{strict = TRUE}.}
 }
 \description{
 Functions to detect and extract Chinese numerals in character object and
-string.
+string. Wrappers around \code{\link[base]{grepl}} and
+\code{\link[stringr]{str_extract_all}}.
 }
 \section{Functions}{
 \itemize{

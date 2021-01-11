@@ -1,7 +1,8 @@
 #' Chinese Numerals Detection and Extraction
 #'
 #' Functions to detect and extract Chinese numerals in character object and
-#' string.
+#' string. Wrappers around \code{\link[base]{grepl}} and
+#' \code{\link[stringr]{str_extract_all}}.
 #'
 #' @param x the character object or string to be tested or to extract from.
 #'
@@ -10,6 +11,10 @@
 #'   characters. A strict test checks if \code{x} is valid Chinese numerals.
 #'   (e.g. "\emph{yi bai yi}" will pass the casual test and fail the strict
 #'   test)
+#'
+#' @param prefix the prefix
+#'
+#' @param suffix the suffix
 #'
 #' @param ... optional arguments to be passed to \code{\link[base]{grepl}} (for
 #'   \code{is_cnum} and \code{has_cnum}) or
@@ -88,6 +93,7 @@ has_cnum <- function(x, lang = default_cnum_lang(), mode = "casual", financial =
 #'
 #' @export
 #'
-extract_cnum <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FALSE, ...) {
-  stringr::str_extract_all(x, return_regex(lang, mode, financial, FALSE), ...)
+extract_cnum <- function(x, lang = default_cnum_lang(), mode = "casual", financial = FALSE,
+                         prefix = NULL, suffix = NULL, ...) {
+  stringr::str_extract_all(x, return_regex(lang, mode, financial, FALSE, prefix, suffix), ...)
 }
