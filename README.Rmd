@@ -110,6 +110,7 @@ extract_cnum("分別加價一百八十元和五十六元")
 extract_cnum("十四亿人", lang = "sc")
 extract_cnum("六万亿元", lang = "sc", mode = "casualPRC")
 extract_cnum(c("加價一百八十元", "加價五十六元"))
+extract_cnum(c("他是第一個", "我是第二個"), prefix = "第", suffix = "個")
 ```
 
 The default language is Traditional Chinese. This can be changed by setting:

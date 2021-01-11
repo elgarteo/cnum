@@ -1,7 +1,7 @@
 Package: cnum
 Type: Package
 Title: Chinese Numerals Processing
-Version: 0.1.2.1
+Version: 0.1.3
 Authors@R: person("Elgar", "Teo", email = "elgarteo@connect.hku.hk",
     role = c("aut", "cre"))
 Maintainer: Elgar Teo <elgarteo@connect.hku.hk>

@@ -25,7 +25,7 @@ return_modes <- function() {
 }
 
 ## Function to return a regular expression to match Chinese numerals
-# @only: whether to return a regex of a string containing Chinese numerals only
+# @only: whether to return a regex for a string containing Chinese numerals only
 return_regex <- function(lang, mode, financial, only, prefix = NULL, suffix = NULL) {
   conv_t <- conv_table(lang, mode, financial)
   chr_c <- conv_t[["chr_t"]]$c
@@ -39,11 +39,11 @@ return_regex <- function(lang, mode, financial, only, prefix = NULL, suffix = NU
     ifelse(only, "^", ifelse(is.null(prefix), "", sprintf("(%s)", prefix))),
     neg, "?",
     # decimal
-    "((", paste0(c(chr_c, scale_c, zero), collapse = "|"), ")+",
+    "(((", paste0(c(chr_c, scale_c, zero), collapse = "|"), ")+",
     dot, "(",
     paste0(c(chr_c, scale_c, zero), collapse = "|"), ")+)|",
     # integer
-    "(", paste0(c(chr_c, scale_c, zero), collapse = "|"), ")+)",
+    "((", paste0(c(chr_c, scale_c, zero), collapse = "|"), ")+))",
     ifelse(only, "$", ifelse(is.null(suffix), "", sprintf("(%s)", suffix)))
   )
 }
