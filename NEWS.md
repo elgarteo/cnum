@@ -1,3 +1,7 @@
+# cnum 0.1.4
+
+* Fixed documentation formatting issue during CRAN check
+
 # cnum 0.1.3
 
 * Added optional prefix and suffix for `extract_cnum()`
