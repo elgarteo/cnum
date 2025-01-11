@@ -69,10 +69,11 @@ conv_table <- function(lang, mode, financial) {
 
   list(
     chr_t = data.frame(c = get(chr_var, envir = asNamespace("cnum")),
-                       n = 1:9, stringsAsFactors = FALSE),
+                       n = 1:9,
+                       stringsAsFactors = FALSE),
     scale_t = data.frame(c = get(scale_var, envir = asNamespace("cnum")),
                          n = get(interval_var, envir = asNamespace("cnum")),
-                                 stringsAsFactors = FALSE),
+                         stringsAsFactors = FALSE),
     zero = get(zero_var, envir = asNamespace("cnum")),
     dot = get(dot_var, envir = asNamespace("cnum")),
     neg = get(neg_var, envir = asNamespace("cnum"))

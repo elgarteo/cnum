@@ -7,8 +7,8 @@
 #' num2c(-6)
 #' num2c(3.14)
 #' num2c(721, literal = TRUE)
-#' num2c(1.45e12, financial = TRUE)
-#' num2c(6.85e12, lang = "sc", mode = "casualPRC")
+#' num2c(1.45e10, financial = TRUE)
+#' num2c(6.85e10, lang = "sc", mode = "casualPRC")
 #' num2c(1.5e9, mode = "SIprefix", single = TRUE)
 #'
 #' @export

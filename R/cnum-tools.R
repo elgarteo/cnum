@@ -34,10 +34,9 @@
 #'   \url{https://gazette.nat.gov.tw/egFront/detail.do?metaid=108965} (in
 #'   Traditional Chinese).
 #'
-#'   The standard for mode \code{"SIprefixPRC"} \emph{China Statutory
-#'   Measurement Units} is available from
-#'   \url{http://gkml.samr.gov.cn/nsjg/jls/201902/t20190225_291134.html} (in
-#'   Simplified Chinese).
+#'   The standard for mode \code{"SIprefixPRC"} \emph{The State Council's Order
+#'   on the Unified Implementation of Legal Measurement Units in Our Country}
+#'   is available from the PRC State Council's website (in Simplified Chinese).
 #'
 #' @seealso \link[=conversion]{Functions for conversion}
 #'

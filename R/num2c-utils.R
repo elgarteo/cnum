@@ -15,7 +15,7 @@ integer2c_single <- function(number, conv_t) {
     new_number <- format(number, scientific = FALSE)
     paste0(integer2c(new_number, conv_t), scale_t$c[scale_t$n == nearest_scale])
   } else {
-    n <- nchar(gsub("^.*\\.", "", new_number)) # count deciaml places
+    n <- nchar(gsub("^.*\\.", "", new_number)) # count decimal places
     new_number <- format(new_number, scientific = FALSE, nsmall = ifelse(n > 22, 22, n))
     int <- gsub("\\..*$", "", new_number)
     dec <- gsub("^..*\\.", "", new_number)

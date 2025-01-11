@@ -88,29 +88,29 @@ string.
 }
 \section{Functions}{
 \itemize{
-\item \code{is_cnum}: Test if character object is Chinese numerals. A wrapper
+\item \code{is_cnum()}: Test if character object is Chinese numerals. A wrapper
 around \code{\link[base]{grepl}}.
 
-\item \code{has_cnum}: Test if string contains Chinese numerals. A wrapper around
+\item \code{has_cnum()}: Test if string contains Chinese numerals. A wrapper around
 \code{\link[base]{grepl}}.
 
-\item \code{extract_cnum}: Extracts Chinese numerals from string. A wrapper around
+\item \code{extract_cnum()}: Extracts Chinese numerals from string. A wrapper around
 \code{\link[stringr]{str_extract_all}} from \code{stringr}.
-}}
 
+}}
 \section{Details}{
  The following scale naming systems are supported: \itemize{
-  \item {\code{"casual"}: }{the casual naming system used outside of mainland
-  China, i.e. 1e+09 is referred to as "\emph{yi zhao}".} \item
-  {\code{"casualPRC"}: }{the casual naming system used in mainland China,
-  i.e. 1e+9 is referred to as "\emph{yi wanyi}".} \item {\code{"SIprefix"}:
-  }{the SI prefix system used in Taiwan as stipulated in the document
+  \item \code{"casual"}: the casual naming system used outside of mainland
+  China, i.e. 1e+09 is referred to as "\emph{yi zhao}". \item
+  \code{"casualPRC"}: the casual naming system used in mainland China,
+  i.e. 1e+9 is referred to as "\emph{yi wanyi}". \item \code{"SIprefix"}:
+  the SI prefix system used in Taiwan as stipulated in the document
   \emph{Names, Definitions and Symbols of the Legal Units of Measurement and
-  the Decimal Multiples and Submultiples}.} \item{\code{"SIprefixPRC"}: }{the
-  SI prefix system used in mainland China as stipulated in the document
-  \emph{China Statutory Measurement Units}.} \item{\code{"SIprefixPRClong"}:
-  }{ a variant of \code{"SIprefixPRC"} with long prefixes, e.g. 1e+09 is
-  referred to as "\emph{yi jika}" instead of "\emph{yi ji}".} }
+  the Decimal Multiples and Submultiples}. \item \code{"SIprefixPRC"}:
+  the SI prefix system used in mainland China as stipulated in the document
+  \emph{China Statutory Measurement Units}. \item \code{"SIprefixPRClong"}:
+  a variant of \code{"SIprefixPRC"} with long prefixes, e.g. 1e+09 is
+  referred to as "\emph{yi jika}" instead of "\emph{yi ji}". }
 }
 
 \examples{
@@ -128,10 +128,9 @@ The standard for mode \code{"SIprefix"} \emph{Names, Definitions
   \url{https://gazette.nat.gov.tw/egFront/detail.do?metaid=108965} (in
   Traditional Chinese).
 
-  The standard for mode \code{"SIprefixPRC"} \emph{China Statutory
-  Measurement Units} is available from
-  \url{http://gkml.samr.gov.cn/nsjg/jls/201902/t20190225_291134.html} (in
-  Simplified Chinese).
+  The standard for mode \code{"SIprefixPRC"} \emph{The State Council's Order
+  on the Unified Implementation of Legal Measurement Units in Our Country}
+  is available from the PRC State Council's website (in Simplified Chinese).
 }
 \seealso{
 \link[=conversion]{Functions for conversion}
