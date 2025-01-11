@@ -12,7 +12,7 @@ integer2c_single <- function(number, conv_t) {
   new_number <- number / 10^(nearest_scale - 1)
 
   if (new_number %% 1 == 0) {
-    new_number <- format(number, scientific = FALSE)
+    new_number <- format(new_number, scientific = FALSE)
     paste0(integer2c(new_number, conv_t), scale_t$c[scale_t$n == nearest_scale])
   } else {
     n <- nchar(gsub("^.*\\.", "", new_number)) # count decimal places
