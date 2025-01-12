@@ -1,3 +1,9 @@
+# cnum 0.1.5
+
+* Fixed bug in duplicated unit character output from `num2c()` in single scale character mode
+
+* Fixed buffer overflow issue when executing `num2c()` examples in gcc-ASAN check
+
 # cnum 0.1.4
 
 * Fixed documentation formatting issue during CRAN check
